@@ -1,0 +1,162 @@
+{% extends 'base.html' %}
+{% block content %}
+<style>
+    .hero-section {
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        color: white;
+        padding: 80px 20px;
+        text-align: center;
+    }
+    
+    .hero-section h1 {
+        font-size: 3.5rem;
+        font-weight: 700;
+        margin-bottom: 20px;
+        letter-spacing: -1px;
+    }
+    
+    .hero-section .subtitle {
+        font-size: 1.3rem;
+        margin-bottom: 10px;
+        opacity: 0.95;
+    }
+    
+    .features-container {
+        padding: 80px 20px;
+        background-color: #f8f9fa;
+    }
+    
+    .feature-card {
+        background: white;
+        border-radius: 15px;
+        padding: 40px 30px;
+        text-align: center;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+        height: 100%;
+    }
+    
+    .feature-card:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 12px 30px rgba(102, 126, 234, 0.2);
+    }
+    
+    .feature-icon {
+        font-size: 3.5rem;
+        margin-bottom: 20px;
+    }
+    
+    .feature-card h3 {
+        color: #333;
+        font-size: 1.4rem;
+        font-weight: 600;
+        margin-bottom: 15px;
+    }
+    
+    .feature-card p {
+        color: #666;
+        font-size: 1rem;
+        line-height: 1.6;
+    }
+    
+    .cta-section {
+        background: white;
+        padding: 30px 20px;
+        text-align: center;
+    }
+    
+    .cta-section h2 {
+        color: #667eea;
+        font-size: 2rem;
+        margin-bottom: 40px;
+        font-weight: 600;
+    }
+    
+    .btn-custom {
+        padding: 14px 45px;
+        font-size: 1rem;
+        font-weight: 600;
+        border-radius: 50px;
+        transition: all 0.3s ease;
+        margin: 0 10px;
+        border: none;
+    }
+    
+    .btn-signin {
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        color: white;
+    }
+    
+    .btn-signin:hover {
+        color: white;
+        transform: scale(1.05);
+        box-shadow: 0 8px 20px rgba(102, 126, 234, 0.3);
+    }
+    
+    .btn-signup {
+        background: white;
+        color: #667eea;
+        border: 2px solid #667eea;
+    }
+    
+    .btn-signup:hover {
+        background: #667eea;
+        color: white;
+        transform: scale(1.05);
+    }
+</style>
+
+<main>
+    <!-- Hero Section -->
+    <section class="hero-section">
+        <h1>Sistema de Gestión de Actividades</h1>
+        <p class="subtitle">Tecnolgia de la informacion</p>
+        <p class="subtitle">Tercer Semestres</p>
+    </section>
+    
+    <!-- Features Section -->
+    <section class="features-container">
+        <div class="container">
+            <div class="row g-4 mb-5">
+                <!-- Feature 1 -->
+                <div class="col-md-6 col-lg-4">
+                    <div class="feature-card">
+                        <div class="feature-icon">📋</div>
+                        <h3>Organización Inteligente</h3>
+                        <p>Crea, edita y organiza tus actividades de manera simple. Mantén todo en un solo lugar y accede desde cualquier dispositivo.</p>
+                    </div>
+                </div>
+                
+                <!-- Feature 2 -->
+                <div class="col-md-6 col-lg-4">
+                    <div class="feature-card">
+                        <div class="feature-icon">✅</div>
+                        <h3>Seguimiento en Tiempo Real</h3>
+                        <p>Visualiza el progreso de tus tareas pendientes y completadas. Marca como hecho y celebra tus logros diarios.</p>
+                    </div>
+                </div>
+                
+                <!-- Feature 3 -->
+                <div class="col-md-6 col-lg-4">
+                    <div class="feature-card">
+                        <div class="feature-icon">🔒</div>
+                        <h3>Seguridad Garantizada</h3>
+                        <p>Tus datos están completamente seguros. Autenticación segura y encriptación para proteger tu información privada.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta-section">
+        <div class="container">
+            <h2>Comienza a gestionar tus tareas hoy mismo</h2>
+            <div>
+                <a href="/signin/" class="btn btn-custom btn-signin">Iniciar Sesión</a>
+                <a href="/signup/" class="btn btn-custom btn-signup">Registrarse</a>
+            </div>
+        </div>
+    </section>
+
+{% endblock %}

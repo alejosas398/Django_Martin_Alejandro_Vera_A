@@ -1,0 +1,43 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "Django: Runserver",
+            "type": "shell",
+            // Usa el intérprete que VS Code ya seleccionó para tu entorno virtual
+            "command": "${config:python.pythonPath}", 
+            "args": [
+                "manage.py",
+                "runserver"
+            ],
+            "group": "build",
+            "presentation": {
+                "reveal": "always",
+                "panel": "new"
+            },
+            "detail": "Inicia el servidor de desarrollo de Django (http://127.0.0.1:8000/)"
+        },
+        {
+            "label": "Django: Makemigrations",
+            "type": "shell",
+            "command": "${config:python.pythonPath}",
+            "args": [
+                "manage.py",
+                "makemigrations"
+            ],
+            "problemMatcher": [],
+            "detail": "Crea nuevos archivos de migración (al cambiar models.py)"
+        },
+        {
+            "label": "Django: Migrate",
+            "type": "shell",
+            "command": "${config:python.pythonPath}",
+            "args": [
+                "manage.py",
+                "migrate"
+            ],
+            "problemMatcher": [],
+            "detail": "Aplica las migraciones pendientes a la base de datos"
+        }
+    ]
+}

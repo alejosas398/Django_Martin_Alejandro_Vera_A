@@ -1,0 +1,25 @@
+from django import forms  
+from django.forms import ModelForm
+from .models import Task
+
+class TaskForm(ModelForm):
+    class Meta:
+        model = Task
+        fields = ['title', 'description', 'datecompleted', 'important']
+        labels = {
+            'title': 'Título',
+            'description': 'Descripción',
+            'datecompleted': 'Fecha Completada',
+            'important': 'Importante',
+        }
+        error_messages = {
+            'title': {
+                'required': 'Esta actividad es requerida',
+            }
+        }
+        widgets = {
+            'title': forms.TextInput(attrs={'class': 'form-control'}),
+            'description': forms.Textarea(attrs={'class': 'form-control'}),
+            'datecompleted': forms.DateInput(attrs={'class': 'form-control', 'type': 'date'}),
+            'important': forms.CheckboxInput(attrs={'class': 'form-check-input'}),
+        }

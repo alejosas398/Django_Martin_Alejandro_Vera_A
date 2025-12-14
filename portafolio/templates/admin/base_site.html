@@ -1,0 +1,53 @@
+{% extends "admin/base_site.html" %}
+{% load static %}
+
+{% block extrastyle %}
+{{ block.super }}
+<style>
+    :root {
+        --primary: #667eea;
+        --secondary: #764ba2;
+    }
+    
+    #header {
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%) !important;
+    }
+    
+    #header h1 a {
+        color: white !important;
+    }
+    
+    .module h2 {
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%) !important;
+        color: white !important;
+    }
+    
+    .module caption {
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%) !important;
+        color: white !important;
+    }
+    
+    .button, input[type="submit"], input[type="button"] {
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%) !important;
+        color: white !important;
+        border: none !important;
+    }
+    
+    .button:hover, input[type="submit"]:hover, input[type="button"]:hover {
+        background: linear-gradient(135deg, #764ba2 0%, #667eea 100%) !important;
+    }
+    
+    a {
+        color: #667eea;
+    }
+    
+    a:focus, a:hover {
+        color: #764ba2;
+    }
+    
+    .submit-row {
+        padding: 12px;
+        text-align: right;
+    }
+</style>
+{% endblock %}
