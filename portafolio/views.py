@@ -13,8 +13,8 @@ def home(request):
     return render(request, 'home.html')
 
 @login_required
-def tasks(request): 
-    tasks = Task.objects.filter(user=request.user, datecompleted__isnull=True)
+def tasks(request):
+    tasks = Task.objects.filter(user=request.user, completed=False).order_by('-created')
     return render(request, 'tasks.html', {'tasks': tasks, 'tipopagina': 'Tareas Pendientes'})
 
 @login_required
@@ -25,7 +25,7 @@ def task_detail(request, task_id):
         return render(request, 'task_detail.html', {'task': task, 'form': form})
     else:
         try:
-            task = get_object_or_404(Task, pk=task_id, User=request.user)
+            task = get_object_or_404(Task, pk=task_id, user=request.user)
             form = TaskForm(request.POST, instance=task)
             form.save()
             return redirect('tasks')
@@ -95,25 +95,32 @@ def signin(request):
             login(request, user)
             return redirect('tasks')
 
-@login_required        
+@login_required
 def create_task(request):
     if request.method == 'GET':
         return render(request, 'create_task.html',
-                      {'form': TaskForm(request.POST)})
+                        {'form': TaskForm()})
     else:
-        try:
-            form = TaskForm(request.POST)
-            new_task = form.save(commit=False)
-            new_task.user = request.user
-            new_task.save()
-            print(form.is_valid())
-            return redirect('tasks')
-        except ValueError:
+        form = TaskForm(request.POST, request.FILES) 
+        
+        if form.is_valid():
+            try:
+                new_task = form.save(commit=False)
+                new_task.user = request.user
+                new_task.save()
+                return redirect('tasks')
+            except ValueError:
+                # Este error es menos probable si el form es válido, pero se mantiene por seguridad
+                return render(request, 'create_task.html',
+                                {'form': form,
+                                'error' : 'Error al guardar la tarea. Intenta de nuevo.'})
+        else:
             return render(request, 'create_task.html',
-                      {'form': TaskForm(),
-                       'error' : 'Error crating task. Try again.'})
+                        {'form': form,
+                         'error': 'Error en el formulario. Verifica los datos.'})
 
-@login_required             
+
+@login_required
 def signout(request):
     logout(request)
     return redirect('home')

@@ -11,6 +11,8 @@ class Task(models.Model):
     completed = models.BooleanField(default=False) 
     user = models.ForeignKey(User, on_delete=models.CASCADE)
 
+    document = models.FileField(upload_to='task_documents/', blank=True, null=True)
+
     def __str__(self):
         return self.title + '- by ' + self.user.username
     class Meta:

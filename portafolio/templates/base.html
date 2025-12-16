@@ -18,22 +18,26 @@
             </button>
 
             <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav ms-auto">
+                <ul class="navbar-nav ms-auto align-items-center">
                     <li class="nav-item">
-                        <a class="nav-link" href="/" style="color: white;">Inicio</a>
+                        <a class="nav-link" href="{% url 'home' %}" style="color: white;">Inicio</a>
                     </li>
                     
                     {% if user.is_authenticated %}
+                    
                     <li class="nav-item">
                         <a class="nav-link" href="{% url 'tasks' %}" style="color: white;">Tarea Pendiente</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="{% url 'create_task' %}" style="color: white;">Nueva Tarea</a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="{% url 'logout' %}" style="color: white;">Cerrar Sesion</a>
+                    
+                    <li class="nav-item ms-3">
+                         <a class="nav-link" href="{% url 'signout' %}" style="color: white;">Cerrar Sesion</a>
                     </li>
+
                     {% else %}
+                    
                     <li class="nav-item">
                         <a class="nav-link" href="{% url 'signup' %}" style="color: white;">Registrarse</a>
                     </li>
