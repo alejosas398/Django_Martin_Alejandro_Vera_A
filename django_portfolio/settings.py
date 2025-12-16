@@ -36,11 +36,10 @@ if RENDER_EXTERNAL_HOSTNAME:
 
 DATABASES = {
     'default': dj_database_url.config(
-        default='postgres://localhost:5432/django_portfolio',
+        default=os.environ.get('postgresql://clase_ale_user:04y7xvYu6tLLac9bKS8XWVzIXyoAarzr@dpg-d4vomnje5dus73aj9qcg-a/clase_ale'),
         conn_max_age=600
     )
-}
-
+} 
 # Application definition
 
 INSTALLED_APPS = [
@@ -88,12 +87,7 @@ WSGI_APPLICATION = 'django_portfolio.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/6.0/ref/settings/#databases
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
-    }
-}
+
 
 
 # Password validation
