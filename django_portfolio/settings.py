@@ -34,12 +34,23 @@ RENDER_EXTERNAL_HOSTNAME = os.environ.get('RENDER_EXTERNAL_HOSTNAME')
 if RENDER_EXTERNAL_HOSTNAME:
     ALLOWED_HOSTS.append(RENDER_EXTERNAL_HOSTNAME)
 
-DATABASES = {
-    'default': dj_database_url.config(
-        default=os.environ.get('postgresql://clase_ale_user:04y7xvYu6tLLac9bKS8XWVzIXyoAarzr@dpg-d4vomnje5dus73aj9qcg-a/clase_ale'),
-        conn_max_age=600
-    )
-} 
+if 'RENDER' in os.environ:
+    # Configuración de Producción (Render)
+    DATABASES = {
+        'default': dj_database_url.config(
+            default=os.environ.get('postgresql://clase_ale_user:04y7xvYu6tLLac9bKS8XWVzIXyoAarzr@dpg-d4vomnje5dus73aj9qcg-a/clase_ale'), 
+            conn_max_age=600,
+            conn_health_checks=True,
+        )
+    }
+else:
+    # Configuración Local (Desarrollo)
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.sqlite3', # Vuelve a SQLite para desarrollo local
+            'NAME': BASE_DIR / 'db.sqlite3',
+        }
+    }
 # Application definition
 
 INSTALLED_APPS = [
